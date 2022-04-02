@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+</head>
+
+<body>
+
+	<form action="#" th:action="@{/sistema/chekCompleto}" th:object="${compa}" method="GET"> 
+	<table>
+		<tr>
+			<td>
+				<label>Numero de compra:</label>
+			</td>
+			<td>
+				<input type="text" id="numero" th:field="*{numero}">
+			</td>
+		</tr>
+		</table>
+		<input type="submit" value="Buscar">
+	</form>
+</body>
+
+
+</html>

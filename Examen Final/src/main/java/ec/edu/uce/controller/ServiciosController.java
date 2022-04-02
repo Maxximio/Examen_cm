@@ -11,6 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import ec.edu.uce.repository.modelo.CompraPasaje;
@@ -99,9 +100,21 @@ public class ServiciosController {
 	///////////Check-in
 	
 	@GetMapping("/check")
-	public String obtenerPaginaCheck(CompraPasaje compa) {
+	public String obtenerPaginaCheck(CompraPasaje compa,Model modelo) {
+		CompraPasaje compas=this.compraService.buscarNumero(compa.getNumero());
+		
+		modelo.addAttribute("compas",compa); 
 		return "check-in";
 	}
 	
+	@PutMapping("/chekCompleto")
+	public String CheckCompletado(CompraPasaje compa,BindingResult result,Model modelo) {
+		
+		compa.setEstado("CHECK-IN");
+		compraService.actualizar(compa);
+		
+	return "index";
+		
+	}
 		
 }
