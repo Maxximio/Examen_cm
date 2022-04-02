@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+</head>
+
+<body>
+
+	<form action="#" th:action="@{/sistema/resultadosnum}" th:object="${vuelo}" method="GET"> 
+	<table>
+		<tr>
+			<td>
+				<label>Ingrese el numero de vuelo de interes :</label>
+			</td>
+			<td>
+				<input type="text" id="numero" th:field="*{numero}">
+			</td>
+		</tr>
+		</table>
+		<input type="submit" value="Buscar">
+	</form>
+</body>
+
+
+</html>

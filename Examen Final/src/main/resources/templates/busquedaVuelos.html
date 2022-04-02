@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+</head>
+
+<body>
+
+	<form action="#" th:action="@{/sistema/resultados}" th:object="${vuelo}" method="GET"> 
+	<table>
+		<tr>
+			<td>
+				<label>Origen:</label>
+			</td>
+			<td>
+				<input type="text" id="origen" th:field="*{origen}">
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<label>Destino:</label>
+			</td>
+			<td>
+				<input type="text" id="destino" th:field="*{destino}">
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<label>Fecha:</label>
+			</td>
+			<td>
+				<input type="datetime-local" id="fecha" th:field="*{fecha}">
+			</td>
+		</tr>
+		</table>
+		<input type="submit" value="Buscar">
+	</form>
+</body>
+
+
+</html>
