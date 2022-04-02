@@ -17,11 +17,7 @@
 		<thead>
 			<tr>
 				<th>Numero de Vuelo</th>
-				<th>Origen</th>
-				<th>Destino</th>
-				<th>Categoria</th>
-				<th>Nombre</th>
-				<th>Valor</th>
+				<th>Asientos Disponibles</th>
 			</tr>
 
 		</thead>
@@ -30,16 +26,35 @@
 
 			<div th:text="${mensaje}" th:if="${mensaje!=null}">
 			</div>
-			<h1> Resultados de su busqueda</h1>
-			<tr th:each="vuelo : ${vuelos}">
+			<h1> Resultados de su busqueda...</h1>
+			<tr th:each="vuelo : ${vuelo}">
 				<form>
 					<td th:text="${vuelo.numero}"></td>
-					<td th:text="${vuelo.origen}"></td>
-					<td th:text="${vuelo.destino}"></td>
-					<td th:text="${vuelo.categoria}"></td>
-					<td th:text="${vuelo.nombre}"></td>
-					<td th:text="${vuelo.valor}"></td>
+					<td th:text="${vuelo.asientos}"></td>
 
+
+					<form action="#" th:action="@{/sistema/reserva}" th:object="${compa}" method="GET">
+						<table>
+							<tr>
+								<td>
+									<label>Numero de asientos que desea comprar:</label>
+								</td>
+								<td>
+									<input type="text" id="asientosComprados" th:field="*{asientosComprados}">
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<label>Tarjeta devito/credito:</label>
+								</td>
+								<td>
+									<input type="text" id="numeroTarjeta" th:field="*{numeroTarjeta}">
+								</td>
+							</tr>
+							
+						</table>
+						<input type="submit" value="Reservar">
+					</form>
 				</form>
 
 			</tr>

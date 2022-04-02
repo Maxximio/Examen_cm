@@ -38,7 +38,6 @@ public class ServiciosController {
 	
 	/////////BuscarVuelosDisponibles
 	
-	
 	@GetMapping("/buscarVuelos")
 	public String obtenerPaginaBusquedaParametros(Vuelo vuelo) {
 		return "busquedaVuelos";
@@ -56,7 +55,7 @@ public class ServiciosController {
 		
 	}
 	
-	/////////Reservar Pasajes
+	/////////////Reservar Pasajes
 	
 	@GetMapping("/buscarDisponibles")
 	public String obtenerPaginaBusquedaNumero(Vuelo vuelo) {
@@ -64,19 +63,45 @@ public class ServiciosController {
 		
 	}
 	
-	@Transactional
 	@GetMapping("/resultadonum")
-	public String BuscarVueloNum(Vuelo vuelo,BindingResult result,Model modelo) {
+	public String BuscarVueloNum(Vuelo vuelo,CompraPasaje compa,BindingResult result,Model modelo) {
 		
 		Vuelo vuela =this.vueloService.buscarNuemroService(vuelo.getNumero());
-		CompraPasaje compa=new CompraPasaje();
 		
 		modelo.addAttribute("vuelo", vuela);
-		
-		modelo.addAttribute("compa", compa);
 		
 	return "listaD";
 		
 	}
 
+	//reserva
+	
+	@Transactional
+	@GetMapping("/reserva")
+	public String GenerandoReserva(Vuelo vuelo, CompraPasaje compa,BindingResult result,Model modelo) {
+		
+		vuelo.setAsientos(vuelo.getAsientos()-compa.getAsientosComprados());
+		
+		if(vuelo.getAsientos()<=-1) {
+			return "falla";
+		}else {
+			if(vuelo.getAsientos()==0) {
+				vuelo.setEstado("NO_DISPONIBLE");
+				vueloService.actualizarService(vuelo);
+			}
+			compraService.Insertar(compa);
+			vueloService.actualizarService(vuelo);
+			
+		return "exito";
+		}
+	}
+	
+	///////////Check-in
+	
+	@GetMapping("/check")
+	public String obtenerPaginaCheck(CompraPasaje compa) {
+		return "check-in";
+	}
+	
+		
 }

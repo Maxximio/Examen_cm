@@ -9,14 +9,14 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 //@EnableAsync
-public class PaWebU4Application implements CommandLineRunner {
+public class Aplicativo implements CommandLineRunner {
 
-	private static final Logger log = LoggerFactory.getLogger(PaWebU4Application.class);
+	private static final Logger log = LoggerFactory.getLogger(Aplicativo.class);
 
 	
 
 	public static void main(String[] args) {
-		SpringApplication.run(PaWebU4Application.class, args);
+		SpringApplication.run(Aplicativo.class, args);
 	}
 
 	@Override
